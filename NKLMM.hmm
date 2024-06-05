@@ -1,0 +1,14 @@
+NKL
+	ATTACKER
+		proxy
+		REGEX FOR SENSIBLEINFO
+	VICTIM
+		✓ Encryption while send
+			Diffie-Hellman
+			AES
+		auto-remove
+			timeout
+			by atkr
+		hide term
+		send own ip
+
