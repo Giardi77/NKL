@@ -12,9 +12,9 @@ ADDRESS = (args.address.__str__(),args.port)
 
 if __name__ == '__main__':
     if args.type == 'victim': 
-        from victim import *
+        from victim import victim_socket
         victim_socket(ADDRESS)
 
     if args.type == 'attacker': 
-        from attacker import *
+        from attacker import attacker_socket 
         attacker_socket(ADDRESS)

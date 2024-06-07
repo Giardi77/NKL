@@ -74,4 +74,3 @@ def receive_packet(sock: socket.socket) -> Packet:
     header , data= buffer.split(SEPARATOR.encode('utf-8'))
 
     return Packet(header, data)
-

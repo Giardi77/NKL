@@ -6,30 +6,28 @@ from Crypto.Hash import SHA256
 def rand():
     return number.getRandomNBitInteger(256)
 
-def calcola(g, a_b, p):
-    risultato = pow(g, a_b, p)
+def PublicKey(g: int, a_or_b: int, p: int):
+    risultato = pow(g, a_or_b, p)
     return risultato
 
-def calcolaK(chiesto, a, p):
-    condiviso = pow(chiesto, a, p)
-    return condiviso
+def SharedSecret(b: int, a: int, p: int):
+    SharedSecret = pow(b, a, p)
+    return SharedSecret
 
-def encrypt_mex(key, messaggio):
+def EncryptAES(key, plaintext):
     cipher = AES.new(key, AES.MODE_EAX)
     nonce = cipher.nonce
-    if isinstance(messaggio,bytes):
-        testo_cifrato = cipher.encrypt(messaggio)
-    else:
-        testo_cifrato = cipher.encrypt(messaggio.encode('utf-8'))
-    return testo_cifrato, nonce
 
-def decrypt_mex(key, nonce, testo_cifrato):
+    Ciphertext = cipher.encrypt(plaintext.encode('utf-8'))
+    return Ciphertext, nonce
+
+def DecryptAES(key, nonce, Ciphertext: bytes):
     decifratore = AES.new(key, AES.MODE_EAX, nonce=nonce)
 
-    messaggio_decifrato = decifratore.decrypt(testo_cifrato)
+    messaggio_decifrato = decifratore.decrypt(Ciphertext)
     return messaggio_decifrato
 
 
-def key_AES(from_key):
-    hash_object = SHA256.new(data=from_key)
+def key_AES(SharedSecret_: bytes):
+    hash_object = SHA256.new(data=SharedSecret_)
     return hash_object.digest()

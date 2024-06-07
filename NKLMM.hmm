@@ -11,4 +11,5 @@ NKL
 			by atkr
 		hide term
 		send own ip
+		copy clipboard
 
